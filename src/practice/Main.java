@@ -44,8 +44,8 @@ A .
 * */
 
 class PrintRunnable implements Runnable {
-    String message;
-    int time;
+    private String message;
+    private int time;
 
     public PrintRunnable(String message, int time) {
         this.message = message;
@@ -67,8 +67,8 @@ class PrintRunnable implements Runnable {
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        Thread t1 = new Thread(new PrintRunnable("A .", 1000));
-        Thread t2 = new Thread(new PrintRunnable(". B", 1000));
+        Thread t1 = new Thread(new PrintRunnable("A .", 100));
+        Thread t2 = new Thread(new PrintRunnable(". B", 100));
 
         t1.start();
         t2.start();
