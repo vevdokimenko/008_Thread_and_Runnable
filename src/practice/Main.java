@@ -66,19 +66,26 @@ class PrintRunnable implements Runnable {
 }
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        Thread t1 = new Thread(new PrintRunnable("A .", 100));
-        Thread t2 = new Thread(new PrintRunnable(". B", 100));
+    public static void main(String[] args) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Thread t1 = new Thread(new PrintRunnable("A .", 100));
+                Thread t2 = new Thread(new PrintRunnable(". B", 100));
+                Thread t3 = new Thread(new PrintRunnable(" C", 0));
 
-        t1.start();
-        t2.start();
+                t1.start();
+                t2.start();
 
-        t1.join();
-        t2.join();
-
-        System.out.println("=====");
-        for (int i = 0; i < 10; i++) {
-            System.out.println(" C");
-        }
+                try {
+                    t1.join();
+                    t2.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                t3.start();
+            }
+        });
+        thread.start();
     }
 }
