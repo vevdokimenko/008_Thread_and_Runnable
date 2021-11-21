@@ -60,8 +60,8 @@ class Cl2 extends Thread {
 
     @Override
     public void run() {
-        for (Cl1 cl1 : cl1s) {
-            cl1.method(this);
+        for (Cl1 item : cl1s) {
+            item.method(this);
         }
     }
 }
